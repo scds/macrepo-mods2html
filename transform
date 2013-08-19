@@ -1,0 +1,13 @@
+#!/bin/bash
+
+if [ -z $1 ]
+then
+	echo "Usage: ./transform <filename>"
+	exit $E_MISSING_POS_PARAM
+fi
+
+infile=$1
+outfile=output.html
+xslfile=mods2html.xsl
+
+java -classpath xalan/xalan.jar:xalan/serializer.jar:xalan/xml-apis.jar:xalan/xercesImpl.jar org.apache.xalan.xslt.Process -IN $infile -OUT $outfile -XSL $xslfile
