@@ -1,0 +1,62 @@
+
+<mods xmlns="http://www.loc.gov/mods/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.loc.gov/mods/v3 http://www.loc.gov/standards/mods/v3/mods-3-2.xsd">
+  <titleInfo>
+    <title>America&apos;s insular possessions</title>
+  </titleInfo>
+  <name type="personal">
+    <namePart>Forbes-Lindsay, C. H.</namePart>
+    <role>
+      <roleTerm authority="marcrelator" type="text">creator</roleTerm>
+    </role>
+  </name>
+  <typeOfResource>text</typeOfResource>
+  <originInfo>
+    <place>
+      <placeTerm authority="marccountry" type="code">pau</placeTerm>
+    </place>
+    <place>
+      <placeTerm type="text">Philadelphia</placeTerm>
+    </place>
+    <publisher>J.C. Winston Co.</publisher>
+    <dateIssued>1906</dateIssued>
+    <issuance>monographic</issuance>
+  </originInfo>
+  <language>
+    <languageTerm authority="iso639-2b" type="code">eng</languageTerm>
+  </language>
+  <physicalDescription>
+    <form authority="marcform">print</form>
+    <extent>2 v. fronts., plates, port., maps (1 fold.) 21 cm.</extent>
+  </physicalDescription>
+  <tableOfContents>v. 1. The Great Antilles. Porto Rico. Guam. Hawaii. Panama.--v. 2. The Philippines.</tableOfContents>
+  <note type="statement of responsibility">by C.H. Forbes-Lindsay ...</note>
+  <note type="additional physical form">Also issued online.</note>
+  <subject>
+    <geographicCode authority="marcgac">n-us---</geographicCode>
+  </subject>
+  <subject authority="lcsh">
+    <geographic>United States</geographic>
+    <topic>Insular possessions</topic>
+  </subject>
+  <classification authority="lcc">F970 .F69</classification>
+  <classification authority="ddc">325 F69</classification>
+  <relatedItem displayLabel="Online version:" type="otherFormat">
+    <titleInfo>
+      <title>America&apos;s insular possessions</title>
+    </titleInfo>
+    <name>
+      <namePart>Forbes-Lindsay, C. H.</namePart>
+    </name>
+    <originInfo>
+      <publisher>Philadelphia, J.C. Winston Co., 1906</publisher>
+    </originInfo>
+    <identifier type="local">(OCoLC)558101448</identifier>
+  </relatedItem>
+  <identifier type="lccn">07001324</identifier>
+  <recordInfo>
+    <recordContentSource authority="marcorg">DLC</recordContentSource>
+    <recordCreationDate encoding="marc">770309</recordCreationDate>
+    <recordChangeDate encoding="iso8601">20121004093415.0</recordChangeDate>
+    <recordIdentifier source="OCoLC">ocm02786212 </recordIdentifier>
+  </recordInfo>
+</mods>

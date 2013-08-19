@@ -1,0 +1,125 @@
+
+<mods:mods xmlns:mods="http://www.loc.gov/mods/v3" version="3.3">
+  <mods:titleInfo>
+    <mods:title>
+			Annotated contract with publisher Schuberth, signed by Liszt
+		</mods:title>
+  </mods:titleInfo>
+  <mods:name type="corporate">
+    <mods:namePart>
+			Schuberth &amp; Co
+		</mods:namePart>
+    <mods:namePart type="date">
+			1826-1903
+		</mods:namePart>
+    <mods:role>
+      <mods:roleTerm authority="marcrelator" type="text">
+				creator
+			</mods:roleTerm>
+    </mods:role>
+  </mods:name>
+  <mods:typeOfResource>
+		still image
+	</mods:typeOfResource>
+  <mods:originInfo>
+    <mods:dateCreated encoding="w3cdtf" keyDate="yes">
+			1875-09-14
+		</mods:dateCreated>
+    <mods:dateOther>
+			14 September 1875
+		</mods:dateOther>
+    <mods:publisher>
+			McMaster University Library
+		</mods:publisher>
+    <mods:place></mods:place>
+  </mods:originInfo>
+  <mods:genre>
+		contract
+	</mods:genre>
+  <mods:genre>
+		Text
+	</mods:genre>
+  <mods:language>
+    <mods:languageTerm authority="iso639-2b" type="code">
+			ger
+		</mods:languageTerm>
+  </mods:language>
+  <mods:identifier type="local">
+		liszt000028
+	</mods:identifier>
+  <mods:physicalDescription>
+    <mods:extent>
+			12 x 21 cm
+		</mods:extent>
+    <mods:form authority="marcform">
+			nonprojected graphic
+		</mods:form>
+    <mods:internetMediaType>
+			image/tif
+		</mods:internetMediaType>
+    <mods:digitalOrigin>
+			reformatted digital
+		</mods:digitalOrigin>
+    <mods:note>
+			A translation is included in the file.
+		</mods:note>
+  </mods:physicalDescription>
+  <mods:location>
+    <mods:physicalLocation type="text">
+			The William Ready Division of Archives and Research Collections
+		</mods:physicalLocation>
+  </mods:location>
+  <mods:subject>
+    <mods:topic>
+			Liszt, Franz, 1811-1886
+		</mods:topic>
+    <mods:topic>
+			Liszt, Franz, 1811-1886--Correspondence.
+		</mods:topic>
+    <mods:geographic>
+			Composers--Europe
+		</mods:geographic>
+    <mods:temporal>
+			Liszt, Franz, 1811-1886
+		</mods:temporal>
+    <mods:hierarchicalGeographic>
+      <mods:continent>
+				Europe
+			</mods:continent>
+      <mods:country>
+				Germany
+			</mods:country>
+      <mods:province>
+				Saxony
+			</mods:province>
+      <mods:region>
+				Leipzig
+			</mods:region>
+      <mods:county></mods:county>
+      <mods:city>
+				Leipzig
+			</mods:city>
+      <mods:citySection></mods:citySection>
+    </mods:hierarchicalGeographic>
+    <mods:cartographics>
+      <mods:coordinates></mods:coordinates>
+    </mods:cartographics>
+  </mods:subject>
+  <mods:relatedItem type="host">
+    <mods:typeOfResource collection="yes">
+      <mods:titleInfo>
+        <mods:title>
+					Franz Liszt and his circle collection. -- 1841-1883.
+				</mods:title>
+      </mods:titleInfo>
+      <mods:location>
+        <mods:url note="Collection Description">
+					http://library.mcmaster.ca/archives/findaids/fonds/l/liszt.htmm
+				</mods:url>
+      </mods:location>
+    </mods:typeOfResource>
+  </mods:relatedItem>
+  <mods:accessCondition>
+		Copyright, public domain:  McMaster University owns the rights to the archival copy of the digital image in TIFF format.
+	</mods:accessCondition>
+</mods:mods>

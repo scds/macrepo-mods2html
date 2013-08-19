@@ -1,0 +1,40 @@
+
+<mods xmlns="http://www.loc.gov/mods/v3" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.loc.gov/mods/v3 http://www.loc.gov/standards/mods/v3/mods-3-0.xsd">
+  <accessCondition>Copyright, public domain: McMaster University owns the rights to the archival copy of the digital image in TIFF format.</accessCondition>
+  <identifier>ww2_Africa_2mil_Aldabra_SOUTH_b38-39_c38-39</identifier>
+  <language></language>
+  <name type="corporate">
+    <namePart>Great Britain. War Office. General Staff. Geographical Section.</namePart>
+  </name>
+  <note>1 map : col. ; 47 x 78 cm., on sheet 57 x 86 cm.</note>
+  <note>GSGS (Series); 2871. 1st ed. &quot;Projection of the International Map.&quot; &quot;Compiled from Admiralty Charts 721 and 2762 dated 1938 and 1940.&quot; &quot;Drawn and printed by E.A. Survey Group, Feb. 1942. Heliographed by O.S. 1942.&quot;</note>
+  <originInfo>
+    <publisher>[London]: War Office</publisher>
+    <dateCreated>1942</dateCreated>
+    <dateOther>1942</dateOther>
+  </originInfo>
+  <physicalDescription>
+    <extent>57 x 86 cm.</extent>
+    <extent>1:2,000,000</extent>
+  </physicalDescription>
+  <subject>
+    <topic>Topographic maps</topic>
+    <topic></topic>
+    <geographic>Africa</geographic>
+    <hierarchicalGeographic>
+      <continent>Africa</continent>
+      <country>Seychelles</country>
+      <province></province>
+      <region>Aldabra Islands</region>
+      <county></county>
+      <city></city>
+      <citySection></citySection>
+    </hierarchicalGeographic>
+    <genre>topographic map</genre>
+  </subject>
+  <titleInfo>
+    <title>Aldabra</title>
+    <subTitle>Africa 1:2,000,000</subTitle>
+  </titleInfo>
+  <typeOfResource>image</typeOfResource>
+</mods>

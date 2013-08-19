@@ -1,0 +1,57 @@
+
+<mods xmlns="http://www.loc.gov/mods/v3" xmlns:mods="http://www.loc.gov/mods/v3" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <titleInfo>
+    <title>A chart of North and South America, including the Atlantic and Pacific Oceans, with the nearest coasts of Europe, Africa, and...</title>
+    <subTitle></subTitle>
+  </titleInfo>
+  <name type="corporate">
+    <namePart>Robert Sayer and John Bennett</namePart>
+    <role>
+      <roleTerm authority="marcrelator" type="text"></roleTerm>
+    </role>
+  </name>
+  <typeOfResource>cartographic</typeOfResource>
+  <genre authority="lctgm"></genre>
+  <originInfo>
+    <dateCreated>1775-06-10</dateCreated>
+    <publisher>Robt. Sayer &amp; J. Bennett</publisher>
+    <place>
+      <placeTerm authority="marccountry" type="code">[England]</placeTerm>
+    </place>
+    <place>
+      <placeTerm type="text">[London]</placeTerm>
+    </place>
+    <dateOther>1775</dateOther>
+  </originInfo>
+  <language>
+    <languageTerm authority="iso639-2b" type="code">eng</languageTerm>
+  </language>
+  <abstract></abstract>
+  <physicalDescription>
+    <form authority="marcform">map</form>
+    <extent>Scale not given</extent>
+    <note>1 map : col. ; 46 x 121 cm., on sheet 56 x 126 cm. </note>
+  </physicalDescription>
+  <note>Outlines hand coloured. Two sheets have been joined in centre. West sheet has caption inside lower neat line: &quot;CHART containing part of the ICY SEA with the adjacent Coast of ASIA and AMERICA.&quot; East sheet has caption inside lower neat line: &quot;CHART Comprizing Greenland with the COUNTRIES and ISLANDS about BAFFINS BAY and part of HUDSONS BAY.&quot; Appraiser&apos;s note: &quot;This is the top one-third of the John Green (&apos;Braddock Mead&apos; Pseud.) map.&quot;</note>
+  <subject>
+    <topic></topic>
+    <geographic>Canada</geographic>
+    <temporal></temporal>
+    <hierarchicalGeographic>
+      <continent>N/A</continent>
+      <country></country>
+      <province></province>
+      <region></region>
+      <county></county>
+      <city></city>
+      <citySection></citySection>
+      <area></area>
+    </hierarchicalGeographic>
+    <cartographics>
+      <coordinates></coordinates>
+    </cartographics>
+    <geographic>Greenland</geographic>
+    <geographic>Asia</geographic>
+  </subject>
+  <identifier type="local">RMC_107006</identifier>
+</mods>
