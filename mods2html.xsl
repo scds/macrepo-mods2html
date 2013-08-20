@@ -12,14 +12,17 @@
 
 .modsLabelLevel2 {
   padding-left: 10px;
+  font-weight:bold;
 }
 
 .modsLabelLevel3 {
   padding-left: 20px;
+  font-weight:bold;
 }
 
 .modsLabelLevel4 {
   padding-left: 30px;
+  font-weight:bold;
 }
 
 .modsValueTop {
@@ -58,6 +61,9 @@
   <!--hr/-->
 </xsl:template>
 
+<xsl:variable name="vLower" select="'abcdefghijklmnopqrstuvwxyz'"/>
+<xsl:variable name="vUpper" select="'ABCDEFGHIJKLMNOPQRSTUVWXYZ'"/>
+
 <xsl:template match="*">
   <xsl:choose>
     <xsl:when test="child::*">
@@ -65,7 +71,7 @@
       <span class="modsLabelTop">
       <xsl:call-template name="longName">
         <xsl:with-param name="name">
-          <xsl:value-of select="local-name()"/>:
+          <xsl:value-of select="concat(translate(substring(local-name(), 1, 1), $vLower, $vUpper), substring(local-name(), 2), substring(' ', 1 div not (position()=last())))"/>:
         </xsl:with-param>
       </xsl:call-template>
       <xsl:call-template name="attr"/>
@@ -78,7 +84,7 @@
       <span class="modsLabelTop">
       <xsl:call-template name="longName">
         <xsl:with-param name="name">
-          <xsl:value-of select="local-name()"/>
+          <xsl:value-of select="concat(translate(substring(local-name(), 1, 1), $vLower, $vUpper), substring(local-name(), 2), substring(' ', 1 div not (position()=last())))"/>
         </xsl:with-param>
       </xsl:call-template>
       <xsl:call-template name="attr"/>
@@ -112,7 +118,7 @@
       <span class="modsLabelLevel2">
       <xsl:call-template name="longName">
         <xsl:with-param name="name">
-          <xsl:value-of select="local-name()"/>
+          <xsl:value-of select="concat(translate(substring(local-name(), 1, 1), $vLower, $vUpper), substring(local-name(), 2), substring(' ', 1 div not (position()=last())))"/>
         </xsl:with-param>
       </xsl:call-template>
       <xsl:call-template name="attr"/>
@@ -125,7 +131,7 @@
       <span class="modsLabelLevel2">
       <xsl:call-template name="longName">
         <xsl:with-param name="name">
-          <xsl:value-of select="local-name()"/>
+          <xsl:value-of select="concat(translate(substring(local-name(), 1, 1), $vLower, $vUpper), substring(local-name(), 2), substring(' ', 1 div not (position()=last())))"/>
         </xsl:with-param>
       </xsl:call-template>
       <xsl:call-template name="attr"/>
@@ -146,7 +152,7 @@
       <span class="modsLabelLevel3">
       <xsl:call-template name="longName">
         <xsl:with-param name="name">
-          <xsl:value-of select="local-name()"/>
+          <xsl:value-of select="concat(translate(substring(local-name(), 1, 1), $vLower, $vUpper), substring(local-name(), 2), substring(' ', 1 div not (position()=last())))"/>
         </xsl:with-param>
       </xsl:call-template>
       <xsl:call-template name="attr"/>
@@ -159,7 +165,7 @@
       <span class="modsLabelLevel3">
       <xsl:call-template name="longName">
         <xsl:with-param name="name">
-          <xsl:value-of select="local-name()"/>
+          <xsl:value-of select="concat(translate(substring(local-name(), 1, 1), $vLower, $vUpper), substring(local-name(), 2), substring(' ', 1 div not (position()=last())))"/>
         </xsl:with-param>
       </xsl:call-template>
       <xsl:call-template name="attr"/>
@@ -178,7 +184,7 @@
   <span class="modsLabelLevel4">
   <xsl:call-template name="longName">
     <xsl:with-param name="name">
-      <xsl:value-of select="local-name()"/>
+      <xsl:value-of select="concat(translate(substring(local-name(), 1, 1), $vLower, $vUpper), substring(local-name(), 2), substring(' ', 1 div not (position()=last())))"/>
     </xsl:with-param>
   </xsl:call-template>
   <xsl:call-template name="attr"/>
@@ -197,7 +203,57 @@
       <xsl:value-of select="$dictionary/entry[@key=$name]"/>
     </xsl:when>
     <xsl:otherwise>
-      <xsl:value-of select="$name"/>
+      <!-- This can't be the best way to do this... -->
+      <xsl:choose>
+        <xsl:when test="contains($name, 'TitleInfo')">
+          <xsl:value-of select="string('Title info')" />
+        </xsl:when>
+        <xsl:when test="contains($name, 'OriginInfo')">
+          <xsl:value-of select="string('Origin info')" />
+        </xsl:when>
+        <xsl:when test="contains($name, 'PhysicalDescription')">
+          <xsl:value-of select="string('Physical description')" />
+        </xsl:when>
+        <xsl:when test="contains($name, 'RelatedItem')">
+          <xsl:value-of select="string('Related item')" />
+        </xsl:when>
+        <xsl:when test="contains($name, 'DigitalOrigin')">
+          <xsl:value-of select="string('Digital origin')" />
+        </xsl:when>
+        <xsl:when test="contains($name, 'HierarchicalGeographic')">
+          <xsl:value-of select="string('Hierarchical geographic')" />
+        </xsl:when>
+        <xsl:when test="contains($name, 'CitySection')">
+          <xsl:value-of select="string('City section')" />
+        </xsl:when>
+        <xsl:when test="contains($name, 'TypeOfResource')">
+          <xsl:value-of select="string('Type of resource')" />
+        </xsl:when>
+        <xsl:when test="contains($name, 'DateCreated')">
+          <xsl:value-of select="string('Date created')" />
+        </xsl:when>
+        <xsl:when test="contains($name, 'DateOther')">
+          <xsl:value-of select="string('Date other')" />
+        </xsl:when>
+        <xsl:when test="contains($name, 'RoleTerm')">
+          <xsl:value-of select="string('Role term')" />
+        </xsl:when>
+        <xsl:when test="contains($name, 'LanguageTerm')">
+          <xsl:value-of select="string('Language term')" />
+        </xsl:when>
+        <xsl:when test="contains($name, 'InternetMediaType')">
+          <xsl:value-of select="string('Internet media type')" />
+        </xsl:when>
+        <xsl:when test="contains($name, 'PhysicalLocation')">
+          <xsl:value-of select="string('Physical location')" />
+        </xsl:when>
+        <xsl:when test="contains($name, 'AccessCondition')">
+          <xsl:value-of select="string('Access condition')" />
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:value-of select="$name"/>
+        </xsl:otherwise>
+      </xsl:choose>
     </xsl:otherwise>
   </xsl:choose>
 </xsl:template>
