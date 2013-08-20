@@ -250,6 +250,33 @@
         <xsl:when test="contains($name, 'AccessCondition')">
           <xsl:value-of select="string('Access condition')" />
         </xsl:when>
+        <xsl:when test="contains($name, 'PlaceTerm')">
+          <xsl:value-of select="string('Place term')" />
+        </xsl:when>
+        <xsl:when test="contains($name, 'NamePart')">
+          <xsl:value-of select="string('Name part')" />
+        </xsl:when>
+        <xsl:when test="contains($name, 'RecordInfo')">
+          <xsl:value-of select="string('Record info')" />
+        </xsl:when>
+        <xsl:when test="contains($name, 'RecordContentSource')">
+          <xsl:value-of select="string('Record content source')" />
+        </xsl:when>
+        <xsl:when test="contains($name, 'RecordCreationDate')">
+          <xsl:value-of select="string('Record creation date')" />
+        </xsl:when>
+        <xsl:when test="contains($name, 'RecordChangeDate')">
+          <xsl:value-of select="string('Record change date')" />
+        </xsl:when>
+        <xsl:when test="contains($name, 'RecordIdentifier')">
+          <xsl:value-of select="string('Record identifier')" />
+        </xsl:when>
+        <xsl:when test="contains($name, 'DateIssued')">
+          <xsl:value-of select="string('Date issued')" />
+        </xsl:when>
+        <xsl:when test="contains($name, 'GeographicCode')">
+          <xsl:value-of select="string('Geographic code')" />
+        </xsl:when>
         <xsl:otherwise>
           <xsl:value-of select="$name"/>
         </xsl:otherwise>
