@@ -7,6 +7,7 @@
 <head>
 <style type="text/css">
 .modsLabelTop {
+  font-weight:bold;
 }
 
 .modsLabelLevel2 {
