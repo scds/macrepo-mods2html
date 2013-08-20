@@ -1,6 +1,6 @@
 ## Macrepo MODS2HTML
 
-This is and XSLT transform for McMaster's Digital Repository.
+This is an XSLT transform for McMaster's Digital Repository.
 
 ### Instructions:
 
