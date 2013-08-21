@@ -11,17 +11,14 @@
 }
 
 .modsLabelLevel2 {
-  padding-left: 10px;
   font-weight:bold;
 }
 
 .modsLabelLevel3 {
-  padding-left: 20px;
   font-weight:bold;
 }
 
 .modsLabelLevel4 {
-  padding-left: 30px;
   font-weight:bold;
 }
 
@@ -32,6 +29,11 @@
 }
 
 .modsValueLevel3 {
+}
+
+.label {
+  text-align:right;
+  padding-right:10px;
 }
 
 </style>
@@ -58,7 +60,6 @@
   <tr><th colspan="2"><h3 class="islandora-obj-details-metadata-title">Metadata <span class="islandora-obj-details-dsid">(MODS)</span></h3></th></tr>
   <xsl:apply-templates/>
   </table>
-  <!--hr/-->
 </xsl:template>
 
 <xsl:variable name="vLower" select="'abcdefghijklmnopqrstuvwxyz'"/>
@@ -67,19 +68,10 @@
 <xsl:template match="*">
   <xsl:choose>
     <xsl:when test="child::*">
-      <tr><td colspan="2">
-      <span class="modsLabelTop">
-      <xsl:call-template name="longName">
-        <xsl:with-param name="name">
-          <xsl:value-of select="concat(translate(substring(local-name(), 1, 1), $vLower, $vUpper), substring(local-name(), 2), substring(' ', 1 div not (position()=last())))"/>:
-        </xsl:with-param>
-      </xsl:call-template>
-      </span>
-      </td></tr>
       <xsl:apply-templates mode="level2"/>
     </xsl:when>
     <xsl:otherwise>
-      <tr><td>
+      <tr><td class="label">
       <span class="modsLabelTop">
       <xsl:call-template name="longName">
         <xsl:with-param name="name">
@@ -112,19 +104,10 @@
 <xsl:template match="*" mode="level2">
   <xsl:choose>
     <xsl:when test="child::*">
-      <tr><td colspan="2">
-      <span class="modsLabelLevel2">
-      <xsl:call-template name="longName">
-        <xsl:with-param name="name">
-          <xsl:value-of select="concat(translate(substring(local-name(), 1, 1), $vLower, $vUpper), substring(local-name(), 2), substring(' ', 1 div not (position()=last())))"/>
-        </xsl:with-param>
-      </xsl:call-template>
-      </span>
-      </td></tr>
       <xsl:apply-templates mode="level3"/>
     </xsl:when>
     <xsl:otherwise>
-      <tr><td>
+      <tr><td class="label">
       <span class="modsLabelLevel2">
       <xsl:call-template name="longName">
         <xsl:with-param name="name">
@@ -144,19 +127,10 @@
 <xsl:template match="*" mode="level3">
   <xsl:choose>
     <xsl:when test="child::*">
-      <tr><td colspan="2">
-      <span class="modsLabelLevel3">
-      <xsl:call-template name="longName">
-        <xsl:with-param name="name">
-          <xsl:value-of select="concat(translate(substring(local-name(), 1, 1), $vLower, $vUpper), substring(local-name(), 2), substring(' ', 1 div not (position()=last())))"/>
-        </xsl:with-param>
-      </xsl:call-template>
-      </span>
-      </td></tr>
       <xsl:apply-templates mode="level4"/>
     </xsl:when>
     <xsl:otherwise>
-      <tr><td>
+      <tr><td class="label">
       <span class="modsLabelLevel3">
       <xsl:call-template name="longName">
         <xsl:with-param name="name">
@@ -174,7 +148,7 @@
 </xsl:template>
 
 <xsl:template match="*" mode="level4">
-  <tr><td>
+  <tr><td class="label">
   <span class="modsLabelLevel4">
   <xsl:call-template name="longName">
     <xsl:with-param name="name">
