@@ -74,7 +74,6 @@
           <xsl:value-of select="concat(translate(substring(local-name(), 1, 1), $vLower, $vUpper), substring(local-name(), 2), substring(' ', 1 div not (position()=last())))"/>:
         </xsl:with-param>
       </xsl:call-template>
-      <xsl:call-template name="attr"/>
       </span>
       </td></tr>
       <xsl:apply-templates mode="level2"/>
@@ -87,7 +86,6 @@
           <xsl:value-of select="concat(translate(substring(local-name(), 1, 1), $vLower, $vUpper), substring(local-name(), 2), substring(' ', 1 div not (position()=last())))"/>
         </xsl:with-param>
       </xsl:call-template>
-      <xsl:call-template name="attr"/>
       </span>
       </td><td>
       <span class="modsValueTop">
@@ -121,7 +119,6 @@
           <xsl:value-of select="concat(translate(substring(local-name(), 1, 1), $vLower, $vUpper), substring(local-name(), 2), substring(' ', 1 div not (position()=last())))"/>
         </xsl:with-param>
       </xsl:call-template>
-      <xsl:call-template name="attr"/>
       </span>
       </td></tr>
       <xsl:apply-templates mode="level3"/>
@@ -134,7 +131,6 @@
           <xsl:value-of select="concat(translate(substring(local-name(), 1, 1), $vLower, $vUpper), substring(local-name(), 2), substring(' ', 1 div not (position()=last())))"/>
         </xsl:with-param>
       </xsl:call-template>
-      <xsl:call-template name="attr"/>
       </span>
       </td><td>
       <span class="modsValueLevel2">
@@ -155,7 +151,6 @@
           <xsl:value-of select="concat(translate(substring(local-name(), 1, 1), $vLower, $vUpper), substring(local-name(), 2), substring(' ', 1 div not (position()=last())))"/>
         </xsl:with-param>
       </xsl:call-template>
-      <xsl:call-template name="attr"/>
       </span>
       </td></tr>
       <xsl:apply-templates mode="level4"/>
@@ -168,7 +163,6 @@
           <xsl:value-of select="concat(translate(substring(local-name(), 1, 1), $vLower, $vUpper), substring(local-name(), 2), substring(' ', 1 div not (position()=last())))"/>
         </xsl:with-param>
       </xsl:call-template>
-      <xsl:call-template name="attr"/>
       </span>
       </td><td>
       <span class="modsValueLevel3">
@@ -187,7 +181,6 @@
       <xsl:value-of select="concat(translate(substring(local-name(), 1, 1), $vLower, $vUpper), substring(local-name(), 2), substring(' ', 1 div not (position()=last())))"/>
     </xsl:with-param>
   </xsl:call-template>
-  <xsl:call-template name="attr"/>
   </span>
   </td><td>
   <span class="modsValueLevel4">
@@ -277,6 +270,9 @@
         <xsl:when test="contains($name, 'GeographicCode')">
           <xsl:value-of select="string('Geographic code')" />
         </xsl:when>
+        <xsl:when test="contains($name, 'TableOfContents ')">
+          <xsl:value-of select="string('Table of contents')" />
+        </xsl:when>
         <xsl:otherwise>
           <xsl:value-of select="$name"/>
         </xsl:otherwise>
@@ -284,34 +280,4 @@
     </xsl:otherwise>
   </xsl:choose>
 </xsl:template>
-
-<xsl:template name="attr">
-  <xsl:for-each select="@type|@point">:
-    <xsl:call-template name="longName">
-      <xsl:with-param name="name">
-        <xsl:value-of select="."/>
-      </xsl:with-param>
-    </xsl:call-template>
-  </xsl:for-each>
-  <xsl:if test="@authority or @edition">
-    <xsl:for-each select="@authority">(<xsl:call-template name="longName">
-        <xsl:with-param name="name">
-          <xsl:value-of select="."/>
-        </xsl:with-param>
-      </xsl:call-template>
-    </xsl:for-each>
-    <xsl:if test="@edition">
-      Edition <xsl:value-of select="@edition"/>
-    </xsl:if>)
-  </xsl:if>
-  <xsl:variable name="attrStr">
-    <xsl:for-each select="@*[local-name()!='edition' and local-name()!='type' and local-name()!='authority' and local-name()!='point']">
-      <xsl:value-of select="local-name()"/>="<xsl:value-of select="."/>",
-    </xsl:for-each>
-  </xsl:variable>
-  <xsl:variable name="nattrStr" select="normalize-space($attrStr)"/>
-    <xsl:if test="string-length($nattrStr)">
-      (<xsl:value-of select="substring($nattrStr,1,string-length($nattrStr)-1)"/>)
-    </xsl:if>
-  </xsl:template>
 </xsl:stylesheet>
