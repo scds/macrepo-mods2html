@@ -34,6 +34,7 @@
 .label {
   text-align:right;
   padding-right:10px;
+  vertical-align:text-top;
 }
 
 </style>
