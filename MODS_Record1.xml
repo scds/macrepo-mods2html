@@ -1,0 +1,62 @@
+
+<mods xmlns="http://www.loc.gov/mods/v3" xmlns:mods="http://www.loc.gov/mods/v3" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <titleInfo>
+    <title>Carte des bayes, rades, et port de Plaisance dans l&apos;isle de Terre-Neuve</title>
+    <subTitle></subTitle>
+  </titleInfo>
+  <name type="personal">
+    <namePart>Bellin, Jacques Nicolas, 1703-1772</namePart>
+    <role>
+      <roleTerm authority="marcrelator" type="text"></roleTerm>
+    </role>
+  </name>
+  <typeOfResource>cartographic</typeOfResource>
+  <genre authority="lctgm"></genre>
+  <originInfo>
+    <dateCreated>1764</dateCreated>
+    <publisher>[Publisher unknown]</publisher>
+    <place>
+      <placeTerm authority="marccountry" type="code">[France]</placeTerm>
+    </place>
+    <place>
+      <placeTerm type="text">[Paris]</placeTerm>
+    </place>
+    <dateOther>1764</dateOther>
+  </originInfo>
+  <language>
+    <languageTerm authority="iso639-2b" type="code">fre</languageTerm>
+  </language>
+  <abstract></abstract>
+  <physicalDescription>
+    <form authority="marcform">map</form>
+    <extent>[1:60,000]</extent>
+    <note>1 map : col. ; 22 x 35 cm., on sheet 32 x 45 cm. </note>
+  </physicalDescription>
+  <note>In upper right corner, &quot;Tome I. No. 20.&quot; In lower right corner, &quot;Croisey Sculp.&quot; Hand coloured. Cartographer uncertain, probably Jacques Nicolas Bellin. Described in Kershaw, Early Printed Maps of Canada, Volume II, entry 534, p. 174: &quot;Published in: Le Petit Atlas Maritime; recueil de Cartes et plans des Quatre Parties du Monde, - .Paris 1764.&quot; Described in Sellers and Van Ee, Maps and Charts of North America... entry 682, p. 143.</note>
+  <subject>
+    <topic></topic>
+    <geographic>Placentia Bay (N.L.)</geographic>
+    <temporal></temporal>
+    <hierarchicalGeographic>
+      <continent>North America</continent>
+      <country>Canada</country>
+      <province>Newfoundland and Labrador</province>
+      <region></region>
+      <county></county>
+      <city></city>
+      <citySection></citySection>
+      <area></area>
+    </hierarchicalGeographic>
+    <cartographics>
+      <coordinates></coordinates>
+    </cartographics>
+    <geographic>Newfoundland and Labrador </geographic>
+  </subject>
+  <identifier type="local">RMC_3821</identifier>
+  <name type="personal">
+    <namePart>Croisey, P.</namePart>
+    <role>
+      <roleTerm authority="marcrelator" type="text"></roleTerm>
+    </role>
+  </name>
+</mods>
