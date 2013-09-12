@@ -1,264 +1,289 @@
 <xsl:stylesheet xmlns:mods="http://www.loc.gov/mods/v3" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" exclude-result-prefixes="mods" version="1.0">
-<xsl:output indent="yes" method="html"/>
-<xsl:variable name="dictionary" select="document('http://www.loc.gov/standards/mods/modsDictionary.xml')/dictionary"/>
+  <xsl:output indent="yes" method="html"/>
+  <xsl:variable name="dictionary" select="document('http://www.loc.gov/standards/mods/modsDictionary.xml')/dictionary"/>
 
-<xsl:template match="/">
-<html>
-<head>
-<style type="text/css">
-.modsLabelTop {
-  font-weight:bold;
-}
+  <!-- main template -->
+  <xsl:template match="/">
+    <html>
+      <head>
+        <style>
+          div.container {
+            width: 500px;
+            float: left;
+          }
+          div.row {
+            float: left;
+            clear: left;
+            width: 100%;
+          }
+          div.heading {
+            font-variant: small-caps;
+            font-size: small;
+            padding-left: 10px;
+          }
+          div.label {
+            text-align: right;
+            font-weight: bold;
+            float: left;
+            width: 200px;
+          }
+          div.value {
+            float: left;
+            padding-left: 10px;
+          }
+          div.shadedBlock {
+            border-left: 1px solid #DDD;
+            background: #F8F8F8;
+          }
+        </style>
+      </head>
+      <body>
+        <div id="container">
+          <xsl:apply-templates />
+        </div>
+      </body>
+    </html>
+  </xsl:template>
 
-.modsLabelLevel2 {
-  font-weight:bold;
-}
+  <!-- apply templates to mods:modsCollection root -->
+  <xsl:template match="mods:modsCollection">
+    <xsl:apply-templates select="mods:modsCollection" />
+  </xsl:template>
 
-.modsLabelLevel3 {
-  font-weight:bold;
-}
+  <!-- apply templates to mods:mods root -->
+  <xsl:template match="mods:mods">
+    <xsl:apply-templates />
+  </xsl:template>
 
-.modsLabelLevel4 {
-  font-weight:bold;
-}
-
-.modsValueTop {
-}
-
-.modsValueLevel2 {
-}
-
-.modsValueLevel3 {
-}
-
-.label {
-  text-align:right;
-  padding-right:10px;
-  vertical-align:text-top;
-}
-
-</style>
-</head>
-<body>
-  <xsl:choose>
-    <xsl:when test="mods:modsCollection">
-      <xsl:apply-templates select="mods:modsCollection"/>
-    </xsl:when>
-    <xsl:when test="mods:mods">
-      <xsl:apply-templates select="mods:mods"/>
-    </xsl:when>
-  </xsl:choose>
-</body>
-</html>
-</xsl:template>
-
-<xsl:template match="mods:modsCollection">
-  <xsl:apply-templates select="mods:mods"/>
-</xsl:template>
-
-<xsl:template match="mods:mods">
-  <table class="modsContainer">
-  <tr><th colspan="2"><h3 class="islandora-obj-details-metadata-title">Metadata <span class="islandora-obj-details-dsid">(MODS)</span></h3></th></tr>
-  <xsl:apply-templates/>
-  </table>
-</xsl:template>
-
-<xsl:variable name="vLower" select="'abcdefghijklmnopqrstuvwxyz'"/>
-<xsl:variable name="vUpper" select="'ABCDEFGHIJKLMNOPQRSTUVWXYZ'"/>
-
-<xsl:template match="*">
-  <xsl:if test="text()">
+  <!-- process each top-level child of mods:mods -->
+  <xsl:template match="mods:*">
     <xsl:choose>
-      <xsl:when test="child::*">
-        <xsl:apply-templates mode="level2"/>
+      <xsl:when test="*">
+        <div class="row">
+          <div class="heading">
+            <xsl:call-template name="longName">
+              <xsl:with-param name="name">
+                <xsl:value-of select="local-name()" />
+              </xsl:with-param>
+            </xsl:call-template>
+          </div>
+          <!-- apply custom templates, or default to applying this template recursively -->
+          <xsl:apply-templates />
+        </div>
       </xsl:when>
       <xsl:otherwise>
-        <tr><td class="label">
-        <span class="modsLabelTop">
-        <xsl:call-template name="longName">
-          <xsl:with-param name="name">
-            <xsl:value-of select="concat(translate(substring(local-name(), 1, 1), $vLower, $vUpper), substring(local-name(), 2), substring(' ', 1 div not (position()=last())))"/>
-          </xsl:with-param>
-        </xsl:call-template>
-        </span>
-        </td><td>
-        <span class="modsValueTop">
-        <xsl:call-template name="formatValue"/>
-        </span>
-        </td></tr>
+        <xsl:call-template name="createRow" />
       </xsl:otherwise>
     </xsl:choose>
-  </xsl:if>
-</xsl:template>
+  </xsl:template>
+  
+  <!-- format mods:titleInfo elements -->
+  <xsl:template match="mods:titleInfo">
+    <div class="row">
+      <div class="label">
+        <xsl:text>Title</xsl:text>
+      </div>
+      <div class="value">
+        <xsl:value-of select="mods:nonSort" />
+        <xsl:value-of select="mods:title" />
+      </div>
+    </div>
+  </xsl:template>
+  
+  <!-- format mods:originInfo elements -->
+  <xsl:template match="mods:originInfo">
+    <xsl:for-each select="mods:place">
+      <xsl:if test="mods:placeTerm[@type = 'text']">
+        <div class="row">
+          <div class="label">
+            <xsl:text>Place of origin</xsl:text>
+          </div>
+          <div class="value">
+            <xsl:value-of select="." />
+          </div>
+        </div>
+      </xsl:if>
+    </xsl:for-each>
+  </xsl:template>
+  
+  <!-- format mods:language elements -->
+  <xsl:template match="mods:language">
+    <div class="row">
+      <div class="label">
+        <xsl:text>Language</xsl:text>
+      </div>
+      <div class="value">
+        <xsl:value-of select="mods:languageTerm" />
+      </div>
+    </div>
+  </xsl:template>
+  
+  <!-- format mods:physicalDescription elements -->
+  <xsl:template match="mods:physicalDescription">
+    <xsl:apply-templates />
+  </xsl:template>
+  
+  <!-- format mods:note elements -->
+  <xsl:template match="mods:note">
+    <div class="row">
+      <div class="label">
+        <xsl:text>Note</xsl:text>
+        <xsl:if test="@type">
+          <xsl:text> (</xsl:text>
+          <xsl:value-of select="@type" />
+          <xsl:text>)</xsl:text>
+        </xsl:if>
+      </div>
+      <div class="value">
+        <xsl:value-of select="text()" />
+      </div>
+    </div>
+  </xsl:template>
+  
+  <!-- format mods:relatedItem elements -->
+  <xsl:template match="mods:relatedItem">
+    <div class="row shadedBlock">
+      <div class="heading">
+        <xsl:call-template name="longName">
+          <xsl:with-param name="name">
+            <xsl:value-of select="local-name()" />
+          </xsl:with-param>
+        </xsl:call-template>
+        <xsl:if test="@displayLabel">
+          <xsl:text> (</xsl:text>
+          <xsl:value-of select="@displayLabel" />
+          <xsl:text>)</xsl:text>
+        </xsl:if>
+      </div>
+      <xsl:apply-templates />
+    </div>
+  </xsl:template>
+  
+  <!-- format mods:subject elements -->
+  <xsl:template match="mods:subject">
+    <div class="row shadedBlock">
+      <div class="heading">
+        <xsl:call-template name="longName">
+          <xsl:with-param name="name">
+            <xsl:value-of select="local-name()" />
+          </xsl:with-param>
+        </xsl:call-template>
+      </div>
+      <xsl:apply-templates />
+    </div>
+  </xsl:template>
+  
+  <!-- format mods:name elements -->
+  <xsl:template match="mods:name">
+    <div class="row">
+      <div class="label">
+        <xsl:text>Name</xsl:text>
+      </div>
+      <div class="value">
+        <xsl:for-each select="mods:namePart">
+          <xsl:choose>
+            <xsl:when test="@type = 'date'">
+              <xsl:text> [</xsl:text>
+              <xsl:value-of select="." />
+              <xsl:text>]</xsl:text>
+            </xsl:when>
+            <xsl:otherwise>
+              <xsl:value-of select="." />
+            </xsl:otherwise>
+          </xsl:choose>
+        </xsl:for-each>
+        <xsl:text> (</xsl:text>
+        <xsl:value-of select="mods:role/mods:roleTerm" />
+        <xsl:text>)</xsl:text>
+      </div>
+    </div>
+  </xsl:template>
+  
+  <!-- format mods:identifier elements -->
+  <xsl:template match="mods:identifier">
+    <div class="row">
+      <div class="label">
+        <xsl:choose>
+          <xsl:when test="@type = 'local'">
+              <xsl:text>Local Identifier</xsl:text>
+          </xsl:when>
+          <xsl:when test="@type = 'lccn'">
+              <xsl:text>LCCN Identifier</xsl:text>
+          </xsl:when>
+          <xsl:otherwise>
+              <xsl:text>Identifier</xsl:text>
+          </xsl:otherwise>
+        </xsl:choose>
+      </div>
+      <div class="value">
+        <xsl:value-of select="." />
+      </div>
+    </div>
+  </xsl:template>
+  
+  <!-- format mods:recordInfo elements -->
+  <xsl:template match="mods:recordInfo">
+    <xsl:apply-templates />
+  </xsl:template>
+  
+  <!-- format mods:classification elements -->
+  <xsl:template match="mods:classification">
+    <div class="row">
+      <div class="label">
+        <xsl:text>Classification</xsl:text>
+        <xsl:if test="@authority">
+          <xsl:text> (</xsl:text>
+          <xsl:value-of select="@authority" />
+          <xsl:text>)</xsl:text>
+        </xsl:if>
+      </div>
+      <div class="value">
+        <xsl:value-of select="." />
+      </div>
+    </div>
+  </xsl:template>
+  
+  <!-- create a label/value row -->
+  <xsl:template name="createRow">
+    <div class="row">
+      <div class="label">
+        <xsl:call-template name="longName">
+          <xsl:with-param name="name">
+            <xsl:value-of select="local-name()" />
+          </xsl:with-param>
+        </xsl:call-template>
+      </div>
+      <div class="value">
+        <xsl:call-template name="formatValue" />
+      </div>
+    </div>
+  </xsl:template>
 
-<xsl:template name="formatValue">
-  <xsl:choose>
-    <xsl:when test="@type='uri'">
-      <a href="{text()}" class="modsLink">
-      <xsl:value-of select="text()"/>
-      </a>
-    </xsl:when>
-    <xsl:otherwise>
-      <xsl:value-of select="text()"/>
-    </xsl:otherwise>
-  </xsl:choose>
-</xsl:template>
-
-<xsl:template match="*" mode="level2">
-  <xsl:if test="text()">
+  <!-- Turns URIs into clickable links -->
+  <xsl:template name="formatValue">
     <xsl:choose>
-      <xsl:when test="child::*">
-        <xsl:apply-templates mode="level3"/>
+      <xsl:when test="@type='uri'">
+        <a href="{text()}" class="modsLink">
+        <xsl:value-of select="text()"/>
+        </a>
       </xsl:when>
       <xsl:otherwise>
-        <tr><td class="label">
-        <span class="modsLabelLevel2">
-        <xsl:call-template name="longName">
-          <xsl:with-param name="name">
-            <xsl:value-of select="concat(translate(substring(local-name(), 1, 1), $vLower, $vUpper), substring(local-name(), 2), substring(' ', 1 div not (position()=last())))"/>
-          </xsl:with-param>
-        </xsl:call-template>
-        </span>
-        </td><td>
-        <span class="modsValueLevel2">
-        <xsl:call-template name="formatValue"/>
-        </span>
-        </td></tr>
+        <xsl:value-of select="text()"/>
       </xsl:otherwise>
     </xsl:choose>
-  </xsl:if>
-</xsl:template>
-
-<xsl:template match="*" mode="level3">
-  <xsl:if test="text()">
+  </xsl:template>
+  
+  <!-- expand MODS labels -->
+  <xsl:template name="longName">
+    <xsl:param name="name" />
     <xsl:choose>
-      <xsl:when test="child::*">
-        <xsl:apply-templates mode="level4"/>
+      <xsl:when test="$dictionary/entry[@key=$name]">
+        <xsl:value-of select="$dictionary/entry[@key=$name]"/>
       </xsl:when>
       <xsl:otherwise>
-        <tr><td class="label">
-        <span class="modsLabelLevel3">
-        <xsl:call-template name="longName">
-          <xsl:with-param name="name">
-            <xsl:value-of select="concat(translate(substring(local-name(), 1, 1), $vLower, $vUpper), substring(local-name(), 2), substring(' ', 1 div not (position()=last())))"/>
-          </xsl:with-param>
-        </xsl:call-template>
-        </span>
-        </td><td>
-        <span class="modsValueLevel3">
-        <xsl:call-template name="formatValue"/>
-        </span>
-        </td></tr>
+        <xsl:value-of select="$name"/>
       </xsl:otherwise>
     </xsl:choose>
-  </xsl:if>
-</xsl:template>
-
-<xsl:template match="*" mode="level4">
-  <tr><td class="label">
-  <span class="modsLabelLevel4">
-  <xsl:call-template name="longName">
-    <xsl:with-param name="name">
-      <xsl:value-of select="concat(translate(substring(local-name(), 1, 1), $vLower, $vUpper), substring(local-name(), 2), substring(' ', 1 div not (position()=last())))"/>
-    </xsl:with-param>
-  </xsl:call-template>
-  </span>
-  </td><td>
-  <span class="modsValueLevel4">
-  <xsl:value-of select="text()"/>
-  </span>
-  </td></tr>
-</xsl:template>
-
-<xsl:template name="longName">
-  <xsl:param name="name"/>
-  <xsl:choose>
-    <xsl:when test="$dictionary/entry[@key=$name]">
-      <xsl:value-of select="$dictionary/entry[@key=$name]"/>
-    </xsl:when>
-    <xsl:otherwise>
-      <!-- This can't be the best way to do this... -->
-      <xsl:choose>
-        <xsl:when test="contains($name, 'TitleInfo')">
-          <xsl:value-of select="string('Title info')" />
-        </xsl:when>
-        <xsl:when test="contains($name, 'OriginInfo')">
-          <xsl:value-of select="string('Origin info')" />
-        </xsl:when>
-        <xsl:when test="contains($name, 'PhysicalDescription')">
-          <xsl:value-of select="string('Physical description')" />
-        </xsl:when>
-        <xsl:when test="contains($name, 'RelatedItem')">
-          <xsl:value-of select="string('Related item')" />
-        </xsl:when>
-        <xsl:when test="contains($name, 'DigitalOrigin')">
-          <xsl:value-of select="string('Digital origin')" />
-        </xsl:when>
-        <xsl:when test="contains($name, 'HierarchicalGeographic')">
-          <xsl:value-of select="string('Hierarchical geographic')" />
-        </xsl:when>
-        <xsl:when test="contains($name, 'CitySection')">
-          <xsl:value-of select="string('City section')" />
-        </xsl:when>
-        <xsl:when test="contains($name, 'TypeOfResource')">
-          <xsl:value-of select="string('Type of resource')" />
-        </xsl:when>
-        <xsl:when test="contains($name, 'DateCreated')">
-          <xsl:value-of select="string('Date created')" />
-        </xsl:when>
-        <xsl:when test="contains($name, 'DateOther')">
-          <xsl:value-of select="string('Date other')" />
-        </xsl:when>
-        <xsl:when test="contains($name, 'RoleTerm')">
-          <xsl:value-of select="string('Role term')" />
-        </xsl:when>
-        <xsl:when test="contains($name, 'LanguageTerm')">
-          <xsl:value-of select="string('Language term')" />
-        </xsl:when>
-        <xsl:when test="contains($name, 'InternetMediaType')">
-          <xsl:value-of select="string('Internet media type')" />
-        </xsl:when>
-        <xsl:when test="contains($name, 'PhysicalLocation')">
-          <xsl:value-of select="string('Physical location')" />
-        </xsl:when>
-        <xsl:when test="contains($name, 'AccessCondition')">
-          <xsl:value-of select="string('Access condition')" />
-        </xsl:when>
-        <xsl:when test="contains($name, 'PlaceTerm')">
-          <xsl:value-of select="string('Place term')" />
-        </xsl:when>
-        <xsl:when test="contains($name, 'NamePart')">
-          <xsl:value-of select="string('Name part')" />
-        </xsl:when>
-        <xsl:when test="contains($name, 'RecordInfo')">
-          <xsl:value-of select="string('Record info')" />
-        </xsl:when>
-        <xsl:when test="contains($name, 'RecordContentSource')">
-          <xsl:value-of select="string('Record content source')" />
-        </xsl:when>
-        <xsl:when test="contains($name, 'RecordCreationDate')">
-          <xsl:value-of select="string('Record creation date')" />
-        </xsl:when>
-        <xsl:when test="contains($name, 'RecordChangeDate')">
-          <xsl:value-of select="string('Record change date')" />
-        </xsl:when>
-        <xsl:when test="contains($name, 'RecordIdentifier')">
-          <xsl:value-of select="string('Record identifier')" />
-        </xsl:when>
-        <xsl:when test="contains($name, 'DateIssued')">
-          <xsl:value-of select="string('Date issued')" />
-        </xsl:when>
-        <xsl:when test="contains($name, 'GeographicCode')">
-          <xsl:value-of select="string('Geographic code')" />
-        </xsl:when>
-        <xsl:when test="contains($name, 'TableOfContents ')">
-          <xsl:value-of select="string('Table of contents')" />
-        </xsl:when>
-        <xsl:otherwise>
-          <xsl:value-of select="$name"/>
-        </xsl:otherwise>
-      </xsl:choose>
-    </xsl:otherwise>
-  </xsl:choose>
-</xsl:template>
+  </xsl:template>
+  
 </xsl:stylesheet>
