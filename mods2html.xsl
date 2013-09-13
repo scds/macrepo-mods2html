@@ -159,6 +159,23 @@
     </div>
   </xsl:template>
   
+  <!-- format mods:url elements -->
+  <xsl:template match="mods:url">
+    <div class="row">
+      <div class="label">
+        <xsl:text>URL</xsl:text>
+        <xsl:if test="@note">
+          <xsl:text> (</xsl:text>
+          <xsl:value-of select="@note" />
+          <xsl:text>)</xsl:text>
+        </xsl:if>
+      </div>
+      <div class="value">
+        <xsl:value-of select="text()" />
+      </div>
+    </div>
+  </xsl:template>
+  
   <!-- format mods:subject elements -->
   <xsl:template match="mods:subject">
     <div class="row shadedBlock">
@@ -171,6 +188,13 @@
       </div>
       <xsl:apply-templates />
     </div>
+  </xsl:template>
+  
+  <!-- format mods:hierarchicalGeographic elements -->
+  <xsl:template match="mods:hierarchicalGeographic">
+    <xsl:for-each select="*">
+      <xsl:call-template name="createRow" />
+    </xsl:for-each>
   </xsl:template>
   
   <!-- format mods:name elements -->
