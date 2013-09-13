@@ -197,6 +197,18 @@
     </xsl:for-each>
   </xsl:template>
   
+  <!-- format mods:location elements -->
+  <xsl:template match="mods:location">
+    <div class="row">
+      <div class="label">
+        <xsl:text>Location</xsl:text>
+      </div>
+      <div class="value">
+        <xsl:value-of select="mods:physicalLocation" />
+      </div>
+    </div>
+  </xsl:template>
+  
   <!-- format mods:name elements -->
   <xsl:template match="mods:name">
     <div class="row">
